@@ -1,6 +1,14 @@
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
+=======
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+
+import org.apache.commons.io.FileUtils;
+>>>>>>> Wordcount using Crunch
 import org.apache.crunch.DoFn;
 import org.apache.crunch.Emitter;
 import org.apache.crunch.PCollection;
@@ -15,9 +23,22 @@ public class WordCount implements Serializable {
 	private static final String INPUT_FILE = "input.txt" ;
 	private static final String OUTPUT_FILE = "output.txt";
 
+<<<<<<< HEAD
 	public static void main(final String[] args) {
 		final WordCount wordCount = new WordCount();
 		wordCount.count(INPUT_FILE, OUTPUT_FILE);
+=======
+	public static void main(final String[] args) throws IOException {
+		File outputFile = new File(OUTPUT_FILE);
+		
+		FileUtils.deleteDirectory(outputFile);
+		
+		final WordCount wordCount = new WordCount();
+		wordCount.count(INPUT_FILE, OUTPUT_FILE);
+		
+		String result = FileUtils.readFileToString(new File(outputFile, "part-r-00000"));
+		System.out.println(result);
+>>>>>>> Wordcount using Crunch
 	}
 	 
 	
